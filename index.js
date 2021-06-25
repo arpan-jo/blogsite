@@ -27,9 +27,9 @@ client.connect((err) => {
   });
 
   app.post('/addPost', (req, res) => {
-    const order = req.body;
+    const blog = req.body;
     ordersCollection
-      .insertOne(order)
+      .insertOne(blog)
       .then((result) => res.send(result.insertedCount > 0));
   });
 });
