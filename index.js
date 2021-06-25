@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 // const ObjectID = require('mongodb').ObjectID;
 require('dotenv').config();
 const app = express();
-const port = process.env.PORT || 3505;
+// const port = process.env.PORT || 3505;
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -16,6 +16,7 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
 client.connect((err) => {
   console.log(err);
   const blogCollection = client.db('blogsite').collection('blogs');
@@ -28,7 +29,8 @@ client.connect((err) => {
 
   app.post('/addPost', (req, res) => {
     const blog = req.body;
-    ordersCollection
+    console.log(blog);
+    blogCollection
       .insertOne(blog)
       .then((result) => res.send(result.insertedCount > 0));
   });
@@ -38,4 +40,6 @@ app.get('/', (req, res) => {
   res.send('Helllo, Blog Server!');
 });
 
-app.listen(port);
+// app.listen(port);
+
+app.listen(3505);
