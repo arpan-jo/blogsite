@@ -35,7 +35,7 @@ client.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Blog Server!');
+  res.send('Helllo, Blog Server!');
 });
 
 app.listen(port);
